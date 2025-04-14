@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>قراءة رسالة</title>
+    <style>
+        body {
+            background-image: url('/static/logo.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            direction: rtl;
+            margin: 0;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.93);
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 320px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        h2, p {
+            margin-bottom: 15px;
+        }
+        .error {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>قراءة رسالة</h2>
+        {% if error == None %}
+            <form method="POST">
+                <input type="text" name="alias" placeholder="كود التعريف الخاص بالمرسل" required>
+                <input type="text" name="code" placeholder="الحروف المشفرة" required>
+                <button type="submit">عرض الرسالة</button>
+            </form>
+        {% elif error %}
+            <div class="error">الكود أو الاسم غير صحيح</div>
+            <a href="/read">حاول مرة أخرى</a>
+        {% else %}
+            <p><strong>كود التعريف:</strong> {{ alias }}</p>
+            <p><strong>الرسالة:</strong> {{ message }}</p>
+            <a href="/">رجوع</a>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>قراءة رسالة</title>
+    <style>
+        body {
+            background-image: url('/static/logo.jpg');
+            background-size: cover;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        <h2>اقرأ رسالتك</h2>
+        <input type="text" name="name" placeholder="الاسم" required><br><br>
+        <input type="password" name="code" placeholder="رمز التحقق" required><br><br>
+        <button type="submit">عرض</button><br><br>
+        {% if message %}
+            <div><strong>{{ message }}</strong></div>
+        {% elif error %}
+            <div style="color:red;"><strong>{{ error }}</strong></div>
+        {% endif %}
+    </form>
+</body>
+</html>
